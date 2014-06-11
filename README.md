@@ -36,11 +36,11 @@ Installation and Usage
 <head>
 	<!-- CSS Stylesheets -->
 	<link rel="stylesheet" type="text/css" href="https://rawgit.com/daneden/animate.css/master/animate.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/wordmagik.animate.css" />
+	<link rel="stylesheet" type="text/css" href="css/wordmagik.animate.min.css" />
 
 	<!-- Javascript Files -->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="text/javascript" src="js/jquery.wordmagik.js"></script>
+	<script type="text/javascript" src="js/jquery.wordmagik.min.js"></script>
 </head>
 ```
 
