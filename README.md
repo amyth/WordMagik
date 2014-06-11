@@ -82,6 +82,6 @@ Type of animation for the disappearing word. For more info see [animate.css](htt
 Author
 =========================
 
-[Amyth Arora](http://www.pythoninja.com)
-[Facebook](http://www.facebook.com/d0uble.A)
-[@mytharora](http://www.twitter.com/mytharora)
+- [Amyth Arora](http://www.pythoninja.com)
+- [Facebook](http://www.facebook.com/d0uble.A)
+- [@mytharora](http://www.twitter.com/mytharora)
