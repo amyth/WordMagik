@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>WordMagik Examples</title>
+
+		<!-- Add CSS files -->
+		<link rel="stylesheet" type="text/css" href="css/wordmagik.css" />
+		<link rel="stylesheet" type="text/css" href="css/wordmagik.animate.css" />
+		<link rel="stylesheet" type="text/css" href="https://rawgit.com/daneden/animate.css/master/animate.min.css" />
+
+		<!-- Add JS files -->
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="js/jquery.wordmagik.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$(".the-word").wordmagik({
+					wordList: ["Awesome", "Cute", "Sexy", "Hot", "Swagging", "Perfect"],
+					eventSelector: "#changeWord",
+					onEvent: "click"
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="container">
+			<h1>WordMagik Example</h1>
+			<div id="canvas">
+				WordMagik is one <span class="wordmagik-word the-word">Awesome</span> text animation plugin.
+			</div>
+			<button id="changeWord">Change Word</button>
+		</div>
+	</body>
+
+</html>
