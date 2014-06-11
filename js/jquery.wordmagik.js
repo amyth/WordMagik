@@ -13,6 +13,15 @@
 (function($) {
 	$.fn.wordmagik = function(options) {
 
+		var plugin = this;
+
+		plugin.update = function(options) {
+			plugin.settings = $.extend({}, plugin.settings, options);
+			if ("wordList" in options) {
+				wordIndex = plugin.settings.randomize ? Math.floor(Math.random() * plugin.settings.wordList.length): 0;
+			}
+		};
+
 		// Defines default options for word magik plugin
 		var defaults = {
 			randomize: true,				// Randomize change of words
@@ -22,7 +31,8 @@
 			animationIn: "bounceInRight",	// In animation
 			animationOut: "bounceOutLeft",	// Out animation
 		};
-		var settings = $.extend({}, defaults, options);
+
+		plugin.settings = $.extend({}, defaults, options);
 
 		var logError = function(err) {
 			var prefix = "WordMagikError: ";
@@ -33,43 +43,41 @@
 
 			// Define globals and variables
 			var $element = $(this);
-			var wordArray = [];
 
-			// change words only if wordArray has words
-			if (settings.wordList.length) {
-
-				// Create a word array
-				wordArray = $.extend(true, [], settings.wordList);
+			// change words only if wordList has words
+			if (plugin.settings.wordList.length) {
 
 				// Define word index
-				wordIndex = settings.randomize ? Math.floor(Math.random() * wordArray.length): 0;
+				wordIndex = plugin.settings.randomize ? Math.floor(Math.random() * plugin.settings.wordList.length): 0;
+				lastWord = $element.html();
 
 				var changeWord = function() {
-					$element.html("<span class=\"wmagik_out\"><span>" + wordArray[wordIndex] + "</span></span>");
+					$element.html("<span class=\"wmagik_out\"><span>" + lastWord + "</span></span>");
 					getNextWord();
-					var wordIn = $("<span class=\"wmagik_in\"><span>" + wordArray[wordIndex] + "</span></span>");
+					var wordIn = $("<span class=\"wmagik_in\"><span>" + plugin.settings.wordList[wordIndex] + "</span></span>");
 					wordIn.appendTo($element);
 					$element.wrapInner("<span class=\"wmagik_word\" />");
 
 					// Add animation classes
-					$element.find(".wmagik_in").addClass("animated " + settings.animationIn);
-					$element.find(".wmagik_out").addClass("animated " + settings.animationOut);
+					$element.find(".wmagik_in").addClass("animated " + plugin.settings.animationIn);
+					$element.find(".wmagik_out").addClass("animated " + plugin.settings.animationOut);
 				};
 
 				var getNextWord = function() {
-					if (settings.randomize) {
-						wordIndex = Math.floor(Math.random() * wordArray.length);
+					if (plugin.settings.randomize) {
+						wordIndex = Math.floor(Math.random() * plugin.settings.wordList.length);
 					} else {
-						wordIndex = wordIndex === wordArray.length ? 0: wordIndex++;
+						wordIndex = wordIndex === plugin.settings.wordList.length ? 0: wordIndex++;
 					}
-					return wordArray[wordIndex];
+					lastWord = plugin.settings.wordList[wordIndex];
+					return lastWord;
 				};
 
-				var $selector = $(settings.eventSelector);
+				var $selector = $(plugin.settings.eventSelector);
 
 				// Bind the change word method to the given selector
 				// for the given event
-				$selector.on(settings.onEvent, changeWord);
+				$selector.on(plugin.settings.onEvent, changeWord);
 
 
 			} else {
